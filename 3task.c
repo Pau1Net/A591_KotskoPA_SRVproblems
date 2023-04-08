@@ -18,11 +18,11 @@ void server(void) {
     // Create a channel
     chid = ChannelCreate(0);
     if (chid == -1) {
-        perror("ChannelCreate");
+        perror("Ошибка - ChannelCreate ");
         exit(EXIT_FAILURE);
     }
 
-    printf("Server started, channel ID: %d\n", chid);
+    printf("Поехали, ID канала: %d\n", chid);
 
     for (;;) {
         rcvid = MsgReceive(chid, &msg, sizeof(msg), NULL);
@@ -31,7 +31,7 @@ void server(void) {
             continue;
         }
 
-        printf("Received message: %s\n", msg.text);
+        printf("Полученное сообщение: %s\n", msg.text);
 
         strncpy(reply.text, msg.text, sizeof(reply.text) - 1);
         reply.text[sizeof(reply.text) - 1] = '\0';
